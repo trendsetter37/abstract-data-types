@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+''' The dtypes module contains all of the abstract data type
+    classes.
+'''
 
 from exceptions import StackEmptyError
 
@@ -21,6 +24,13 @@ class Stack(object):
         except AssertionError:
             raise StackEmptyError
         self._stack = list()
+
+    def peek(self):
+        try:
+            assert self.length != 0
+        except AssertionError:
+            raise StackEmptyError
+        return self._stack[-1]
 
     def pull(self):
         ''' pull value from top of stack
