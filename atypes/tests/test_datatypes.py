@@ -3,6 +3,7 @@
 import unittest
 
 from atypes import Stack
+from atypes.exceptions import StackEmptyError
 
 
 class TestStackMethods(unittest.TestCase):
@@ -45,6 +46,11 @@ class TestStackMethods(unittest.TestCase):
         stack.push(*[x for x in range(1, 101)])
         self.assertEqual(stack.length, 100)
         self.assertEqual(stack.pull(), 100)
+
+    def test_empty_stack_error(self):
+        stack = Stack()
+        with self.assertRaises(StackEmptyError):
+            stack.pull()
 
 
 if __name__ == '__main__':
