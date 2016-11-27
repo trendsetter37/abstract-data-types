@@ -46,7 +46,13 @@ class Stack(object):
             yield thing
 
     def __repr__(self):
-        return "Stack({})".format(self._stack)
+        stack_items = ""
+        for idx, item in enumerate(self._stack):
+            if idx != self.length - 1:
+                stack_items += str(item) + ', '
+            else:
+                stack_items += str(item)
+        return 'Stack({})'.format(stack_items)
 
     def __str__(self):
         return "{}".format(self._stack)
