@@ -3,47 +3,43 @@
     classes.
 '''
 
-from exceptions import StackEmptyError
+from .exceptions import StackEmptyError
 
 
 class Stack(object):
-    
-    _accepted_seqs = (list, tuple, set)
+
+    accepted_seqs = (list, tuple, set)
     _stack = list()
 
     def __init__(self, *args):
-       
+
         if len(args) == 0:
             self._stack = list()
         else:
             self._stack.extend(args)
-    
+
     def clear(self):
-        try:
-            assert self.length != 0
-        except AssertionError:
-            raise StackEmptyError
+        self._check_stack_vacancy()
         self._stack = list()
 
     def peek(self):
-        try:
-            assert self.length != 0
-        except AssertionError:
-            raise StackEmptyError
+        self._check_stack_vacancy()
         return self._stack[-1]
 
     def pull(self):
-        ''' pull value from top of stack
+        '''Pull a value from the top of the stack.
         '''
-        if self.length > 0:
-            return self._stack.pop()
-        else:
-            raise StackEmptyError('Stack is empty')
+        self._check_stack_vacancy()
+        return self._stack.pop()
 
     def push(self, *args):
-        ''' push new value or sequence of values onto the stack
+        '''Push new value or sequence of values onto stack.
         '''
         self._stack.extend(args)
+
+    def _check_stack_vacancy(self):
+        if len(self._stack) < 1:
+            raise StackEmptyError('Stack is empty.')
 
     def __iter__(self):
         for thing in self._stack:
@@ -57,4 +53,11 @@ class Stack(object):
 
     @property
     def length(self):
+        '''Return length of stack.
+        '''
         return len(self._stack)
+
+
+__all__ = [
+    "Stack"
+]
