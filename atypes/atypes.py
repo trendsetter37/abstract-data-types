@@ -13,9 +13,7 @@ class Stack(object):
 
     def __init__(self, *args):
 
-        if len(args) == 0:
-            self._stack = list()
-        else:
+        if len(args) > 0:
             self._stack.extend(args)
 
     def clear(self):
