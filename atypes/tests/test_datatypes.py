@@ -15,7 +15,7 @@ class TestStackMethods(unittest.TestCase):
         pass
 
     def test_clear(self):
-        stack = Stack(*[x for x in range(1, 6)])
+        stack = Stack(*[1, 2, 3, 4, 5])
         self.assertEqual(stack.length, 5)
         stack.clear()
         self.assertEqual(stack.length, 0)
