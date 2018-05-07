@@ -61,7 +61,6 @@ class Stack(object):
         '''
         return len(self._stack)
 
-
 __all__ = [
     "Stack"
 ]
