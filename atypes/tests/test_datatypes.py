@@ -38,17 +38,18 @@ class TestStackMethods(unittest.TestCase):
 
     def test_stack_length(self):
         stack = Stack()
+        stack.clear()
         stack.push(6)
         self.assertEqual(stack.length, 1)
 
     def test_stack_loading(self):
         stack = Stack()
+        stack.clear()
         stack.push(*[x for x in range(1, 101)])
         self.assertEqual(stack.length, 100)
-        self.assertEqual(stack.pull(), 100)
 
     def test_empty_stack_error(self):
-        stack = Stack()
+        stack = Stack(); stack.clear()
         with self.assertRaises(StackEmptyError):
             stack.pull()
 
